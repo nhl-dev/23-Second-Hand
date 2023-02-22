@@ -1,15 +1,20 @@
 import { Button, StyleSheet, Text, View } from "react-native"
 import React, { useEffect } from "react"
+import { useSelector } from "react-redux"
 
 const DetailsScreen = ({ navigation, route }) => {
+  const product = useSelector((state) => state.products.selectedProduct)
+
   useEffect(() => {
     console.log(route.params)
   }, [])
 
   return (
     <View style={styles.container}>
-      <Text>{route.params.name}</Text>
-      <Button title="Go to categories" onPress={() => navigation.popToTop()} />
+      <Text>{product.name}</Text>
+      <Text>{product.description}</Text>
+      <Text>{product.price}</Text>
+      <Button title='Add to cart' onPress={() => console.log('Agregar al carrito')}/>
     </View>
   )
 }

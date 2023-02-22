@@ -1,14 +1,23 @@
-import { Button, StyleSheet, Text, View, FlatList } from "react-native"
+import { StyleSheet, FlatList } from "react-native"
 import React, { useEffect } from "react"
 import ProductsItem from "../components/ProductsItem"
-import { PRODUCTS } from "../data/products"
+import { useSelector, useDispatch } from "react-redux"
+
+import { selectedProduct, filteredProduct } from "../store/actions/products.action"
 
 const ProductsScreen = ({ navigation, route }) => {
-  const newProducts = PRODUCTS.filter(
-    product => product.category === route.params.categoryId
-  )
+
+  const dispatch = useDispatch()
+
+  const categoryProducts = useSelector(state => state.products.filteredProduct)
+  const category = useSelector(state => state.categories.selectedCategory)
+
+  useEffect(() => {
+    dispatch(filteredProduct(category.id))
+  }, [])
 
   const handleSelectedProduct = item => {
+    dispatch(selectedProduct(item.id))
     navigation.navigate("Details", {
       name: item.name,
     })
@@ -20,7 +29,7 @@ const ProductsScreen = ({ navigation, route }) => {
 
   return (
     <FlatList
-      data={newProducts}
+      data={categoryProducts}
       renderItem={renderProductItem}
       keyExtractor={item => item.id}
       numColumns={2}
