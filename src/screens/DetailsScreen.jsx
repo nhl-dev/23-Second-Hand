@@ -3,11 +3,13 @@ import React, { useEffect } from "react"
 import { useSelector } from "react-redux"
 
 const DetailsScreen = ({ navigation, route }) => {
-  const product = useSelector((state) => state.products.selectedProduct)
+  const product = useSelector(state => state.products.selected)
 
   useEffect(() => {
     console.log(route.params)
   }, [])
+
+  console.log(product);
 
   return (
     <View style={styles.container}>

@@ -9,10 +9,9 @@ const initialState = {
 
 const ProductReducer = (state = initialState, action) => {
 
-  
-
   switch (action.type) {
     case SELECTED_PRODUCT:
+      console.log(state.products.find(product => product.id === action.productId));
       return {
         ...state,
         selected: state.products.find(
