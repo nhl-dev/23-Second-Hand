@@ -6,6 +6,8 @@ import ShopNavigator from "./ShopNavigator"
 import CartNavigator from "./CartNavigator"
 import OrdersNavigator from "./OrdersNavigator"
 
+import { COLORS } from '../constants/colors'
+
 const BottomTabs = createBottomTabNavigator()
 
 export default BottomTabNavigator = () => {
@@ -24,8 +26,8 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarIcon: () => (
             <View style={styles.icon}>
-              <Ionicons name="home" size={20} color="black" />
-              <Text>Tienda</Text>
+              <Ionicons name="home" size={20} color="white" />
+              <Text style={styles.text}>Tienda</Text>
             </View>
           ),
         }}
@@ -36,8 +38,8 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarIcon: () => (
             <View style={styles.icon}>
-              <Ionicons name="cart" size={20} color="black" />
-              <Text>Carrito</Text>
+              <Ionicons name="cart" size={20} color="white" />
+              <Text style={styles.text}>Carrito</Text>
             </View>
           ),
         }}
@@ -48,8 +50,8 @@ export default BottomTabNavigator = () => {
         options={{
           tabBarIcon: () => (
             <View style={styles.icon}>
-              <Ionicons name="list" size={20} color="black" />
-              <Text>Ordenes</Text>
+              <Ionicons name="list" size={20} color="white" />
+              <Text style={styles.text}>Ordenes</Text>
             </View>
           ),
         }}
@@ -71,10 +73,14 @@ const styles = StyleSheet.create({
     right: 20,
     borderRadius: 15,
     height: 90,
+    backgroundColor: COLORS.quaternary,
   },
   icon: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  text: {
+    color: 'white',
   },
 })

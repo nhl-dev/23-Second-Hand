@@ -1,10 +1,12 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import React from "react"
 
+import { COLORS } from '../constants/colors'
+
 const ProductsItem = ({ item, onSelected }) => {
   return (
     <TouchableOpacity
-      style={styles.itemContainer}
+      style={{...styles.itemContainer, ...{ backgroundColor: COLORS.primary } }}
       onPress={() => onSelected(item)}
     >
       <View style={styles.imageContainer}>
@@ -16,9 +18,8 @@ const ProductsItem = ({ item, onSelected }) => {
         />
       </View>
       <View style={styles.textContainer}>
-        <Text>{item.name}</Text>
-        <Text>{item.description}</Text>
-        <Text>${item.price}</Text>
+        <Text style={styles.textTitle}>{item.name}</Text>
+        <Text style={styles.price}>${item.price}</Text>
       </View>
     </TouchableOpacity>
   )
@@ -30,21 +31,36 @@ const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     borderRadius: 10,
-    padding: 20,
     shadowColor: "black",
     shadowOpacity: 0.5,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
     elevation: 5,
+    marginVertical: 10,
   },
   imageContainer: {
-    height: "60%",
+    height: "70%",
   },
   textContainer: {
-    height: "40%",
+    height: "30%",
+    paddingLeft: 20,
+    flex: 1,
+    justifyContent: "center",
   },
   image: {
     height: "100%",
     width: "100%",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  textTitle: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  price: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 })

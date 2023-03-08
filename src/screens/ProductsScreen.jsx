@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList } from "react-native"
+import { StyleSheet, FlatList, View } from "react-native"
 import React, { useEffect } from "react"
 import ProductsItem from "../components/ProductsItem"
 import { useSelector, useDispatch } from "react-redux"
@@ -24,7 +24,9 @@ const ProductsScreen = ({ navigation, route }) => {
   }
 
   const renderProductItem = ({ item }) => (
-    <ProductsItem item={item} onSelected={handleSelectedProduct} />
+    <View style={styles.productsContainer}>
+      <ProductsItem item={item} onSelected={handleSelectedProduct} />
+    </View>
   )
 
   return (
@@ -32,7 +34,7 @@ const ProductsScreen = ({ navigation, route }) => {
       data={categoryProducts}
       renderItem={renderProductItem}
       keyExtractor={item => item.id}
-      numColumns={2}
+      numColumns={1}
     />
   )
 }
@@ -46,7 +48,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   productsContainer: {
-    height: 150,
-    width: 150,
+    alignSelf: "center",
+    height: 250,
+    width: "90%",
   },
 })

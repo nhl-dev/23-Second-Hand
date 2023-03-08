@@ -5,7 +5,7 @@ export const CATEGORIES = [
     id: "1",
     title: "Sneakers",
     img: "https://www.highsnobiety.com/static-assets/wp-content/uploads/2021/09/11104616/air-jordan-4-retro-military-black-dh6927-111-release-date-7.jpg",
-    color: COLORS.priamry,
+    color: COLORS.primary,
   },
   {
     id: "2",

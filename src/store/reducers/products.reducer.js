@@ -7,11 +7,10 @@ const initialState = {
   selected: null,
 }
 
-const ProductReducer = (state = initialState, action) => {
+const productReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case SELECTED_PRODUCT:
-      console.log(state.products.find(product => product.id === action.productId));
       return {
         ...state,
         selected: state.products.find(
@@ -30,4 +29,4 @@ const ProductReducer = (state = initialState, action) => {
   }
 }
 
-export default ProductReducer
+export default productReducer

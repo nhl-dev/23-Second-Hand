@@ -2,6 +2,8 @@ import React from "react"
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native"
 import Ionicons from "@expo/vector-icons/Ionicons"
 
+import { COLORS } from '../constants/colors'
+
 const formatDay = time => {
   const date = new Date(time)
   return date.toLocaleDateString()
@@ -12,7 +14,7 @@ const OrderItem = ({ item, onDelete }) => {
     <View style={styles.order}>
       <View>
         <Text style={styles.date}>{formatDay(item.date)}</Text>
-        <Text style={styles.total}>total</Text>
+        <Text style={styles.total}>{`$ ${item.total}`}</Text>
       </View>
       <View>
         <TouchableOpacity onPress={() => onDelete()}>
@@ -35,11 +37,14 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     borderWidth: 1,
     borderRadius: 6,
+    backgroundColor: COLORS.quaternary,
   },
   date: {
     fontSize: 18,
+    color: "white",
   },
   total: {
     fontSize: 18,
+    color: "white",
   },
 })
