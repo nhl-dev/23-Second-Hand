@@ -1,3 +1,4 @@
+import { LogBox } from 'react-native'
 import { ADD_ITEM, REMOVE_ITEM, CONFIRM_CART } from '../actions/cart.action'
 
 const INITIAL_STATE = {
@@ -5,7 +6,10 @@ const INITIAL_STATE = {
     total: 0,
 }
 
-const sumTotal = list => list.map(item => item.quantity * item.price).reduce((a, b) => a + b, 0)
+const sumTotal = list => {
+    const total = list.map(item => item.quantity * item.price).reduce((a, b) => a + b, 0)
+    return total
+}
 
 const cartReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -18,12 +22,15 @@ const cartReducer = (state = INITIAL_STATE, action) => {
 
             if (item === -1) {
                 const item = {...action.item, quantity: 1}
-                return {...state, items: [...state.items, item], total: sumTotal([...state.items, item])}
+                const updatedItems = [...state.items, item]
+                return {...state, items: updatedItems, total: sumTotal(updatedItems)}
             }
 
             const items = [...state.items].map((item) => {
                 if (item.id === action.item.id) {
-                    item.quantity += 1
+                    item.quantity++
+                    return item
+                } else {
                     return item
                 }
             })
