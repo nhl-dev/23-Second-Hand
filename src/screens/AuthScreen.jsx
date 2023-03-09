@@ -20,6 +20,7 @@ const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
 const formReducer = (state, action) => {
     if (action.type === FORM_INPUT_UPDATE) {
+        console.log(action);
         const updatedValues = {
             ...state.inputValues,
             [action.input]: action.value
@@ -29,13 +30,13 @@ const formReducer = (state, action) => {
             [action.input]: action.isValid
         };
 
-        let updatedFormIsValid = true;
-
+        console.log(updatedValues);
         console.log(updatedValidities);
+
+        let updatedFormIsValid = true;
 
         for (const key in updatedValidities) {
             updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
-            console.log(updatedFormIsValid);
         }
 
         return {
@@ -81,7 +82,7 @@ const AuthScreen = () => {
         }
     }
 
-    const onInputChange = useCallback((inputIdentifier, inputValue, inputValidity) => {
+    const onInputChange = useCallback(( inputValue, inputValidity, inputIdentifier) => {
         dispatchFormState({
             type: FORM_INPUT_UPDATE,
             value: inputValue,

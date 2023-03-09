@@ -37,12 +37,13 @@ const Input = ( {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: initialValue ? initialValue : '',
     isValid: initialValid,
+    input: props.id,
     touched: false
   }) 
 
   useEffect(() => {
     if (inputState.touched) {
-      onInputChange(inputState.value, inputState.isValid)
+      onInputChange(inputState.value, inputState.isValid, inputState.input)
     }
   }, [inputState, onInputChange])
 
@@ -52,19 +53,27 @@ const Input = ( {
 
     let isValid = true;
 
-    if (required && text.trim().length === 0) isValid = false;
+    if (required && text.trim().length === 0) {
+      isValid = false;
+    }
 
-    if (email && !emailRegex.test(text.toLowerCase())) isValid = false;
+    if (email && !emailRegex.test(text.toLowerCase())) {
+      isValid = false;
+    }
 
-    if (minLength && text.length < minLength) isValid = false;
+    if (minLength && text.length < minLength) {
+      isValid = false;
+    }
 
-    if (max && text > max) isValid = false;
+    if (max && text > max) {
+      isValid = false;
+    }
 
     dispatch({ type: INPUT_CHANGE, value: text, isValid: isValid })
 
   }
 
-  const onBlureHandler = () => {
+  const onBlurHandler = () => {
     dispatch({ type: INPUT_BLUR })
   }
 
@@ -75,7 +84,7 @@ const Input = ( {
       style={styles.input}
       value={inputState.value}
       onChangeText={textChangeHandler}
-      onBlur={onBlureHandler}
+      onBlur={onBlurHandler}
       {...props}
       />
       {!inputState.isValid && inputState.touched && (
