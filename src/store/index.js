@@ -6,13 +6,15 @@ import productReducer from "./reducers/products.reducer"
 import cartReducer from "./reducers/cart.reducer"
 import orderReducer from "./reducers/order.reducer"
 import authReducer from "./reducers/auth.reducer"
+import userdataReducer from "./reducers/userdata.reducer"
 
 const RootReducer = combineReducers({
   categories: categoryReducer,
   products: productReducer,
   cart: cartReducer,
   orders: orderReducer,
-  auth: authReducer
+  auth: authReducer,
+  userdata: userdataReducer,
 })
 
 export default createStore(RootReducer, applyMiddleware(thunk))

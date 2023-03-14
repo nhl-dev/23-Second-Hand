@@ -25,6 +25,7 @@ const OrdersScreen = () => {
       data={orders}
       keyExtractor={item => item.id}
       renderItem={renderOrderItem}
+      style={{ bottom: 90 }}
     />
   )
 }

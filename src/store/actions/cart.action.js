@@ -4,6 +4,8 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const CONFIRM_CART = 'CONFIRM_CART';
 
+import { getOrders } from './order.action';
+
 export const addItem = (item) => ({
     type: ADD_ITEM,
     item
@@ -33,6 +35,7 @@ export const confirmCart = ( payload, total ) => {
                 type: CONFIRM_CART,
                 confirm: true
             })
+            dispatch(getOrders())
         } catch (error) {
             console.log(error);
         }

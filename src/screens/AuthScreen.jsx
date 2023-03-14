@@ -11,7 +11,7 @@ import { StyleSheet,
 
 import { useDispatch } from "react-redux"
 import { signup } from "../store/actions/auth.action"
-import ImageSelector from "../components/ImageSelector"
+
 
 import { COLORS } from "../constants/colors"
 import Input from "../components/Input"
@@ -95,8 +95,6 @@ const AuthScreen = () => {
         <KeyboardAvoidingView behavior="height" style={styles.screen}>
             <View style={styles.container}>
                 <Text style={styles.title}>REGISTRO</Text>
-
-                <ImageSelector onImage={image => console.log(image)} />
 
                 <View style={styles.form}>
                     <Input

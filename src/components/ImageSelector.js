@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, Image, Button, Text, Alert } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 
 import { COLORS } from '../constants/colors'
 
 const ImageSelector = props => {
-    const [pickedImage, setPickedImage] = useState()
+    const [pickedImage, setPickedImage] = useState();
+
+    useEffect(() => {
+        if(props.currentImage) setPickedImage(props.currentImage);
+    }, [props.currentImage])
 
     const verifyPermissions = async () => {
         const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -35,7 +39,7 @@ const ImageSelector = props => {
     return (
         <View style={styles.container}>
             <View style={styles.preview}>
-                {!pickedImage ? (<Text> No hay una imagen seleccionada.</Text>)  
+                {!pickedImage ? (<Text style={styles.text}> No hay una imagen seleccionada.</Text>)  
                 : (<Image style={styles.image} source={{uri: pickedImage}} />)}
             </View>
             <Button title="Tomar foto" color={COLORS.primary} onPress={handlerImagePicker} />
@@ -48,8 +52,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     preview: {
-        width: 130,
-        height: 130,
+        width: 150,
+        height: 150,
         borderRadius: 100,
         marginBottom: 10,
         justifyContent: 'center',
@@ -61,6 +65,10 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderRadius: 100
+    },
+    text: {
+        color: 'white',
+        textAlign: 'center'
     }
 })
 

@@ -14,7 +14,6 @@ export const getOrders = () => {
       });
       const resData = await response.json();
       const orders = [];
-      console.log(resData);
       for (const key in resData) {
         orders.push({
           id: key,
